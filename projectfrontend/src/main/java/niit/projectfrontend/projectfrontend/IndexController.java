@@ -12,5 +12,11 @@ public class IndexController {
 	{
 		return new ModelAndView("index");		
 	}
+	
+	@RequestMapping("/registration")
+	public ModelAndView registration()
+	{
+		return new ModelAndView("registration");
+	}
 
 }
