@@ -7,25 +7,30 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
-<form:form method="post" action="registration">    
+<form:form method="post" modelAttribute="customer" action="registerProcess">    
         <table >    
+           
          <tr>    
           <td>FirstName: </td>   
-          <td><form:input path="firstname"  /></td>  
+          <td><form:input path="firstName" /></td>  
          </tr>    
          <tr>    
           <td>LastName:</td>    
-          <td><form:input path="lastname" /></td>  
+          <td><form:input path="lastName" /></td>  
          </tr>   
          <tr>    
-          <td>Password :</td>    
+         <td>Password :</td>    
           <td><form:input path="password" /></td>  
+         </tr>
+         <tr>    
+          <td>ConfirmPassword :</td>    
+          <td><form:input path="confirmPassword" /></td>  
          </tr>   
          <tr>    
           <td colspan="2"><input type="submit" value="Save" /></td>    
          </tr>    
         </table>    
-       </form:form>    
+       </form:form>   
 
 </body>
 </html>

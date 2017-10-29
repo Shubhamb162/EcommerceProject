@@ -15,7 +15,7 @@ public class Customer {
 		private String lastName;
 		private String password;
 		@Transient
-		private String ConfirmPassword;
+		private String confirmPassword;
 		
 		public Integer getCustomerId() {
 			return customerId;
@@ -42,9 +42,9 @@ public class Customer {
 			this.password = password;
 		}
 		public String getConfirmPassword() {
-			return ConfirmPassword;
+			return confirmPassword;
 		}
 		public void setConfirmPassword(String confirmPassword) {
-			ConfirmPassword = confirmPassword;
+			confirmPassword = confirmPassword;
 		}
 }
