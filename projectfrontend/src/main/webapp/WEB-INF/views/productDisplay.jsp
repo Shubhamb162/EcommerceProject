@@ -8,30 +8,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Products</title>
 <style type="text/css">
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+/* table,th {
+	text-align: center;
 }
-th, td {
-    padding: 15px;
-}
-th{
-	text-align:center;
-	}
-td {
-    text-align: center;
-}
-</style>
+ */</style>
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<%-- <form:form method="post" modelAttribute="customer"
-		action="registerProcess">
+
+	<form:form action="productProcess" modelAttribute="product"
+		method="post">
 		<br>
 		<br>
 		<br>
@@ -41,77 +27,43 @@ td {
 				<div class="col-sm-4">
 					<h1 style="text-align: center">Products</h1>
 					<div class="form-group">
-						<label for="firstname">FirstName</label> <input type="text"
-							class="form-control" name="firstName" id="name"
-							placeholder="Enter First Name" required="required">
+						<label for="productName">Product Name</label> <input type="text"
+							class="form-control" name="productName" id="productName"
+							placeholder="Enter Product Name" required="required">
 					</div>
 					<div class="form-group">
-						<label for="lastName">LastName</label> <input type="text"
-							class="form-control" name="lastName" id="lastName"
-							placeholder="Enter Last Name">
+						<label for="productDesc">Product Description</label> <input
+							type="text" class="form-control" name="productDesc"
+							id="productDesc" placeholder="Enter product Description">
 					</div>
 					<div class="form-group">
-						<label for="email">Email</label> <input type="email"
-							class="form-control" name="emailId" id="email"
-							placeholder="Enter EmailId">
-					</div>
-					<div class="form-group">
-						<label for="mobileNo">Mobile No</label> <input type="text"
-							class="form-control" name="mobileNo" id="mobileNo"
-							placeholder="Enter Mobile Number">
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label> <input type="text"
-							class="form-control" name="password" id="password"
-							placeholder="Enter password">
-					</div>
-					<div class="form-group">
-						<label for="confirmPassword">Confirm Password</label> <input
-							type="password" class="form-control" name="confirmPassword"
-							id="confirmPassword" placeholder="Confirm Password">
+						<label for="productPrice">Product Price</label> <input
+							type="number" class="form-control" name="productPrice"
+							id="productPrice" placeholder="Enter product Price">
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 				</div>
 			</div>
 		</div>
 	</form:form>
-	 --%>
-	<form:form action="productProcess" modelAttribute="product"
-		method="post">
-		<table align="center">
-			<tr>
-				<td><form:label path="productName">Product Name</form:label></td>
-				<td><form:input path="productName" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="productDesc">Product Description</form:label></td>
-				<td><form:input path="productDesc" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="productPrice">Product Price</form:label></td>
-				<td><form:input path="productPrice" /></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td colspan="2"><input type="submit" value="Submit" /></td>
-			</tr>
+	
+	<div class="container">
+		<h2 style="text-align: center">Product List</h2>
+		<table class="table table-bordered" style="text-align: center;">
+			<thead>
+				<tr>
+					<th style="text-align: center;">Product Name</th>
+					<th style="text-align: center;">Product Description</th>
+					<th style="text-align: center;">Product Price</th>
+				</tr>
+			</thead>
+			<c:forEach var="products" items="${productLists}">
+				<tr>
+					<td>${products.productName}</td>
+					<td>${products.productDesc}</td>
+					<td>${products.productPrice}</td>
+			</c:forEach>
 		</table>
-
-	</form:form>
-	<br>
-	<br>
-	<table align="center" style="width: 80%">
-		<tr>
-			<th>Product Name</th>
-			<th>Product Description</th>
-			<th>Product Price</th>
-		</tr>
-		<c:forEach var="products" items="${productLists}">
-			<tr>
-				<td>${products.productName}</td>
-				<td>${products.productDesc}</td>
-				<td>${products.productPrice}</td>
-		</c:forEach>
-	</table>
+	</div>
 </body>
 </html>
