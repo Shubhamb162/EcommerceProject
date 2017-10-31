@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Products</title>
 <style type="text/css">
 table, th, td {
     border: 1px solid black;
@@ -35,6 +35,7 @@ table, th, td {
 				<td><form:input path="productPrice" /></td>
 			</tr>
 			<tr>
+				<td></td>
 				<td colspan="2"><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>

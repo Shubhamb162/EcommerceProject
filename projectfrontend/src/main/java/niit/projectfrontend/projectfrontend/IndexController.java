@@ -58,10 +58,12 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value = "/productProcess", method = RequestMethod.POST)
-	public ModelAndView saveProduct(@ModelAttribute("product") Product product,Model m) {
+	public String saveProduct(@ModelAttribute("product") Product product,Model m) {
 		productDao.addProduct(product);
-		List<Product> productList= productDao.getAllProduct();
+		/*List<Product> productList= productDao.getAllProduct();
 		m.addAttribute("productLists",productList);
-		return new ModelAndView("productDisplay");
+		Product product1=new Product();
+		m.addAttribute(product1);*/
+		return "redirect:/productDisplay";
 	}
 }
