@@ -16,6 +16,8 @@ public class Customer {
 		private String password;
 		@Transient
 		private String confirmPassword;
+		private String emailId;
+		private String mobileNo;
 		
 		public Integer getCustomerId() {
 			return customerId;
@@ -46,5 +48,17 @@ public class Customer {
 		}
 		public void setConfirmPassword(String confirmPassword) {
 			confirmPassword = confirmPassword;
+		}
+		public String getEmailId() {
+			return emailId;
+		}
+		public void setEmailId(String emailId) {
+			this.emailId = emailId;
+		}
+		public String getMobileNo() {
+			return mobileNo;
+		}
+		public void setMobileNo(String mobileNo) {
+			this.mobileNo = mobileNo;
 		}
 }

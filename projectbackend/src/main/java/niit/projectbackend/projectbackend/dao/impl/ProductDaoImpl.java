@@ -58,7 +58,7 @@ public class ProductDaoImpl implements ProductDao
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> getALLProduct() {
+	public List<Product> getAllProduct() {
 		 return sessionFactory.getCurrentSession().createQuery("from Product").getResultList();
 	}
 
