@@ -10,6 +10,16 @@
 <style type="text/css">
 table, th, td {
     border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+th{
+	text-align:center;
+	}
+td {
+    text-align: center;
 }
 </style>
 </head>
@@ -20,7 +30,54 @@ table, th, td {
 	<br>
 	<br>
 	<br>
-	<form:form action="productProcess" modelAttribute="product" method="post">
+	<%-- <form:form method="post" modelAttribute="customer"
+		action="registerProcess">
+		<br>
+		<br>
+		<br>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">
+					<h1 style="text-align: center">Products</h1>
+					<div class="form-group">
+						<label for="firstname">FirstName</label> <input type="text"
+							class="form-control" name="firstName" id="name"
+							placeholder="Enter First Name" required="required">
+					</div>
+					<div class="form-group">
+						<label for="lastName">LastName</label> <input type="text"
+							class="form-control" name="lastName" id="lastName"
+							placeholder="Enter Last Name">
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label> <input type="email"
+							class="form-control" name="emailId" id="email"
+							placeholder="Enter EmailId">
+					</div>
+					<div class="form-group">
+						<label for="mobileNo">Mobile No</label> <input type="text"
+							class="form-control" name="mobileNo" id="mobileNo"
+							placeholder="Enter Mobile Number">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label> <input type="text"
+							class="form-control" name="password" id="password"
+							placeholder="Enter password">
+					</div>
+					<div class="form-group">
+						<label for="confirmPassword">Confirm Password</label> <input
+							type="password" class="form-control" name="confirmPassword"
+							id="confirmPassword" placeholder="Confirm Password">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form:form>
+	 --%>
+	<form:form action="productProcess" modelAttribute="product"
+		method="post">
 		<table align="center">
 			<tr>
 				<td><form:label path="productName">Product Name</form:label></td>
@@ -43,20 +100,18 @@ table, th, td {
 	</form:form>
 	<br>
 	<br>
-	<table align="center" padding="10px">
+	<table align="center" style="width: 80%">
 		<tr>
 			<th>Product Name</th>
 			<th>Product Description</th>
 			<th>Product Price</th>
 		</tr>
-		
-		<c:forEach  var="products" items="${productLists}">
-		<tr>
-		<td>${products.productName}</td>
-		<td>${products.productDesc}</td>
-		<td>${products.productPrice}</td>
+		<c:forEach var="products" items="${productLists}">
+			<tr>
+				<td>${products.productName}</td>
+				<td>${products.productDesc}</td>
+				<td>${products.productPrice}</td>
 		</c:forEach>
-		
 	</table>
 </body>
 </html>

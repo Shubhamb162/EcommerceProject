@@ -32,7 +32,7 @@ public class productTesting {
 	    	 //product.setproductId(102);
 	    	 product.setProductName("Amul");
 	 		 product.setProductDesc("Milk");
-	 		 product.setProductPrice("80");
+	 		 product.setProductPrice(80.00);
 	 		 Assert.assertEquals("Data Entered Ureka",true,productDao.addProduct(product));  
 	     }
 	    
