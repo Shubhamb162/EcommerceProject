@@ -31,12 +31,12 @@ public class CategoryTesting {
 		    public void categoryAddTest()  
 		     {  
 		    	 //product.setproductId(102);
-		    	 category.setCategoryName("Amul");
-		    	 category.setCategoryDesc("Milk");
+		    	 category.setCategoryName("sunfeast");
+		    	 category.setCategoryDesc("bis");
 		 		 Assert.assertEquals("Data Entered Ureka",true,categoryDao.addCategory(category));  
 		     }
 		    
-		     @Test
+		    /* @Test
 		     public void categoryDeleteTest()
 		     {
 		    	 category.setCategoryId(2);
@@ -59,7 +59,7 @@ public class CategoryTesting {
 		    	category.setCategoryName("Sanchi");
 		    	category.setCategoryDesc("Milk");
 		    	Assert.assertEquals("Updated",true,categoryDao.updateCategory(category));
-		    }
+		    }*/
 		   /*
 		    @Test
 		    public void productListTest()

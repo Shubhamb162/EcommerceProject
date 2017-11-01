@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 @Entity
 public class Product {
 	@Id
@@ -12,6 +13,8 @@ public class Product {
 	private String productName;
 	private String productDesc;
 	private Double productPrice;
+	@ManyToOne
+	private Category category;
 	
 	public Integer getProductId() {
 		return productId;
@@ -36,6 +39,12 @@ public class Product {
 	}
 	public void setProductPrice(Double productPrice) {
 		this.productPrice = productPrice;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 

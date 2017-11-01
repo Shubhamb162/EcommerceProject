@@ -1,9 +1,12 @@
 package niit.projectbackend.projectbackend;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category {	
@@ -13,7 +16,9 @@ public class Category {
 	private Integer categoryId;
 	private String categoryName;
 	private String categoryDesc;
-	
+	@OneToMany
+	private Collection<Product> products=new ArrayList<Product>();
+	 
 	public Integer getCategoryId() {
 		return categoryId;
 	}
@@ -31,6 +36,12 @@ public class Category {
 	}
 	public void setCategoryDesc(String categoryDesc) {
 		this.categoryDesc = categoryDesc;
+	}
+	public Collection<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Collection<Product> products) {
+		this.products = products;
 	}
 	
 }

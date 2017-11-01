@@ -1,9 +1,12 @@
 package niit.projectbackend.projectbackend;
 
-import org.junit.Assert;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import niit.projectbackend.projectbackend.dao.CategoryDao;
 import niit.projectbackend.projectbackend.dao.ProductDao;
 
 public class productTesting {
@@ -11,7 +14,10 @@ public class productTesting {
 		AnnotationConfigApplicationContext context;
 		ProductDao productDao;
 		Product product;
-	 
+		CategoryDao categoryDao;
+		Category category;
+		Category products;
+		
 	    @Before
 	    public void init()
 	    {
@@ -25,17 +31,38 @@ public class productTesting {
 	    	productDao=(ProductDao) context.getBean("productDao");
 	    	//Creating the object of POJO class or Transaction manager
 	    	product=new Product();
+	    	//getting the beans of productDao type
+	    	categoryDao=(CategoryDao) context.getBean("categoryDao");
+	    	//Creating the object of POJO class or Transaction manager
+	    
 	    }
 	    @Test  
 	    public void productAddTest()  
 	     {  
-	    	 //product.setproductId(102);
-	    	 product.setProductName("Amul");
-	 		 product.setProductDesc("Milk");
-	 		 product.setProductPrice(80.00);
-	 		 Assert.assertEquals("Data Entered Ureka",true,productDao.addProduct(product));  
-	     }
+	    	category=categoryDao.getCategory(2);
+	    	product.setProductName("cream");
+	    	product.setProductDesc("cream biss");
+	    	product.setProductPrice(70.00);
+	    	product.setCategory(category);
+	    	Product pro=new Product();
+	    	pro.setCategory(category);
+	    	pro.setProductName("ebi");
+	    	pro.setProductDesc("tech");
+	    	pro.setProductPrice(20.00);
+	    	productDao.addProduct(pro);
 	    
+	    	productDao.addProduct(product);
+	    	List<Product> products=category.getProducts();
+			products.add(product);
+			products.add(pro);
+	category.setProducts(products);
+	categoryDao.updateCategory(category);
+	    	
+	    	
+	    	
+	    	
+	     }
+	    /*
 	     @Test
 	     public void productDeleteTest()
 	     {
@@ -61,7 +88,7 @@ public class productTesting {
 	    	product.setProductDesc("Milk");
 	    	Assert.assertEquals("Updated",true,productDao.updateProduct(product));
 	    }
-	   /*
+	   
 	    @Test
 	    public void productListTest()
 	    {
