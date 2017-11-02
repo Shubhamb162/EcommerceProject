@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import niit.projectbackend.projectbackend.Category;
-import niit.projectbackend.projectbackend.Product;
 import niit.projectbackend.projectbackend.dao.CategoryDao;;
 
 @Repository("categoryDao") // for doing all database related operation we have

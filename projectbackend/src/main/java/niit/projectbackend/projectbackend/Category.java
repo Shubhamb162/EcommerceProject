@@ -3,6 +3,7 @@ package niit.projectbackend.projectbackend;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class Category {
 	private Integer categoryId;
 	private String categoryName;
 	private String categoryDesc;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 	private Collection<Product> products=new ArrayList<Product>();
 	 
 	public Integer getCategoryId() {

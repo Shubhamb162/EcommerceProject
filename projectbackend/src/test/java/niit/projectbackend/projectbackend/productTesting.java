@@ -1,7 +1,8 @@
 package niit.projectbackend.projectbackend;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -39,28 +40,23 @@ public class productTesting {
 	    @Test  
 	    public void productAddTest()  
 	     {  
-	    	category=categoryDao.getCategory(2);
-	    	product.setProductName("cream");
-	    	product.setProductDesc("cream biss");
-	    	product.setProductPrice(70.00);
-	    	product.setCategory(category);
+	    	category=categoryDao.getCategory(1);	//getting category details using categoryId
+	    	product.setProductName("cre");		
+	    	product.setProductDesc("am biss");
+	    	product.setProductPrice(700.00);
+	    	product.setCategory(category);			// Adding details of category to products
 	    	Product pro=new Product();
 	    	pro.setCategory(category);
 	    	pro.setProductName("ebi");
 	    	pro.setProductDesc("tech");
-	    	pro.setProductPrice(20.00);
-	    	productDao.addProduct(pro);
-	    
-	    	productDao.addProduct(product);
-	    	List<Product> products=category.getProducts();
+	    	pro.setProductPrice(20.00);	    		// Setting product data 
+	    	Collection<Product> products= category.getProducts();
 			products.add(product);
 			products.add(pro);
-	category.setProducts(products);
-	categoryDao.updateCategory(category);
-	    	
-	    	
-	    	
-	    	
+			category.setProducts(products);			//setting product data in category 
+			productDao.addProduct(pro);				//Adding product data to product table
+	    	productDao.addProduct(product);			
+			categoryDao.updateCategory(category);	//Updating category	table   	    	
 	     }
 	    /*
 	     @Test

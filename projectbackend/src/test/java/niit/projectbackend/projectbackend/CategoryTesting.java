@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import niit.projectbackend.projectbackend.dao.CategoryDao;
-import niit.projectbackend.projectbackend.dao.ProductDao;
 
 public class CategoryTesting {
 	//we have to declare reference variables here to access it in any method
