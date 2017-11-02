@@ -1,12 +1,9 @@
 package niit.projectbackend.projectbackend;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import niit.projectbackend.projectbackend.dao.CategoryDao;
 import niit.projectbackend.projectbackend.dao.ProductDao;
 

@@ -11,7 +11,6 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
-
 .navbar-custom1 .nav>li>a:focus, .navbar-custom1 .nav>li>a:hover,
 	.navbar-custom1 .nav>li.active>a {
 	background-color: LightBlue;
@@ -39,8 +38,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="registration"><span
 						class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="login"><span class="glyphicon glyphicon-log-in"></span>
-						Login</a></li>
+				<li><a href="login"><span
+						class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
 	</nav>

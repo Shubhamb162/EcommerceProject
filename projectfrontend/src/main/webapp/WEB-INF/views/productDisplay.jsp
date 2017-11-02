@@ -11,7 +11,8 @@
 /* table,th {
 	text-align: center;
 }
- */</style>
+ */
+</style>
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
@@ -27,26 +28,36 @@
 				<div class="col-sm-4">
 					<h1 style="text-align: center">Products</h1>
 					<div class="form-group">
-						<label for="productName">Product Name</label> <input type="text"
+						<label for="productName">Product Name</label> <form:input type="text" path="productName"
 							class="form-control" name="productName" id="productName"
-							placeholder="Enter Product Name" required="required">
+							placeholder="Enter Product Name" required="required"/>
 					</div>
 					<div class="form-group">
-						<label for="productDesc">Product Description</label> <input
+						<label for="productDesc">Product Description</label> <form:input path="productDesc"
 							type="text" class="form-control" name="productDesc"
-							id="productDesc" placeholder="Enter product Description">
+							id="productDesc" placeholder="Enter product Description"/>
 					</div>
 					<div class="form-group">
-						<label for="productPrice">Product Price</label> <input
+						<label for="productPrice">Product Price</label> <form:input path="productPrice"
 							type="number" class="form-control" name="productPrice"
-							id="productPrice" placeholder="Enter product Price">
+							id="productPrice" placeholder="Enter product Price"/>
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<div class="form-group">
+						<label for="sel1">Select Category:</label>  <form:select
+							class="form-control" id="sel1" path="category.categoryId">
+							<c:forEach var="category" items="${categoryLists}">
+							<option value="${category.categoryId}" >${category.categoryName}</option>
+							</c:forEach>
+						</form:select>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</div>
 				</div>
 			</div>
 		</div>
 	</form:form>
-	
+
 	<div class="container">
 		<h2 style="text-align: center">Product List</h2>
 		<table class="table table-bordered" style="text-align: center;">
