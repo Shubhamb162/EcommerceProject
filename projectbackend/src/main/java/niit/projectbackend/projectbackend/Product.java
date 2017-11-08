@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Product {
 	@Id
@@ -15,6 +17,8 @@ public class Product {
 	private Double productPrice;
 	@ManyToOne
 	private Category category;
+	@Transient
+	private MultipartFile productImage;
 	
 	public Integer getProductId() {
 		return productId;
@@ -42,6 +46,12 @@ public class Product {
 	}
 	public Category getCategory() {
 		return category;
+	}
+	public MultipartFile getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(MultipartFile productImage) {
+		this.productImage = productImage;
 	}
 	public void setCategory(Category category) {
 		this.category = category;

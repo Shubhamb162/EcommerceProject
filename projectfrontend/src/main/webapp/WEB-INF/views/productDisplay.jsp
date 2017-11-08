@@ -18,7 +18,7 @@
 	<c:import url="header.jsp"></c:import>
 
 	<form:form action="productProcess" modelAttribute="product"
-		method="post">
+		method="post" enctype="multipart/form-data">
 		<br>
 		<br>
 		<br>
@@ -28,25 +28,33 @@
 				<div class="col-sm-4">
 					<h1 style="text-align: center">Products</h1>
 					<div class="form-group">
-						<label for="productName">Product Name</label> <form:input type="text" path="productName"
-							class="form-control" name="productName" id="productName"
-							placeholder="Enter Product Name" required="required"/>
+						<label for="productName">Product Name</label>
+						<form:input type="text" path="productName" class="form-control"
+							name="productName" id="productName"
+							placeholder="Enter Product Name" required="required" />
 					</div>
 					<div class="form-group">
-						<label for="productDesc">Product Description</label> <form:input path="productDesc"
-							type="text" class="form-control" name="productDesc"
-							id="productDesc" placeholder="Enter product Description"/>
+						<label for="productDesc">Product Description</label>
+						<form:input path="productDesc" type="text" class="form-control"
+							name="productDesc" id="productDesc"
+							placeholder="Enter product Description" />
 					</div>
 					<div class="form-group">
-						<label for="productPrice">Product Price</label> <form:input path="productPrice"
-							type="number" class="form-control" name="productPrice"
-							id="productPrice" placeholder="Enter product Price"/>
+						<label for="productPrice">Product Price</label>
+						<form:input path="productPrice" type="number" class="form-control"
+							name="productPrice" id="productPrice"
+							placeholder="Enter product Price" />
 					</div>
 					<div class="form-group">
-						<label for="sel1">Select Category:</label>  <form:select
-							class="form-control" id="sel1" path="category.categoryId">
+						<label for="productImage">Product Image</label>
+						<form:input type="file" path="productImage" />
+					</div>
+					<div class="form-group">
+						<label for="sel1">Select Category:</label>
+						<form:select class="form-control" id="sel1"
+							path="category.categoryId">
 							<c:forEach var="category" items="${categoryLists}">
-							<option value="${category.categoryId}" >${category.categoryName}</option>
+								<option value="${category.categoryId}">${category.categoryName}</option>
 							</c:forEach>
 						</form:select>
 					</div>
@@ -63,6 +71,8 @@
 		<table class="table table-bordered" style="text-align: center;">
 			<thead>
 				<tr>
+					<!--<th style="text-align: center;"><span class="glyphicons glyphicons-picture"></span></th>-->
+					<th style="text-align: center;">Product Address</th>
 					<th style="text-align: center;">Product Name</th>
 					<th style="text-align: center;">Product Description</th>
 					<th style="text-align: center;">Product Price</th>
@@ -70,7 +80,8 @@
 			</thead>
 			<c:forEach var="products" items="${productLists}">
 				<tr>
-					<td>${products.productName}</td>
+					<td>${products.productId}</td>
+					<td><a href="productInformation/${products.productId}">${products.productName}</a></td>
 					<td>${products.productDesc}</td>
 					<td>${products.productPrice}</td>
 			</c:forEach>
