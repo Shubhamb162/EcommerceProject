@@ -86,7 +86,15 @@ public class IndexController {
 		 * System.out.println(product.getProductName());
 		 * System.out.println("product cat"+product.getCategory());
 		 */
+		
+		System.err.println("productId "+product.getProductId());
+		if(product.getProductId()!=null)
+		{
+			productDao.updateProduct(product);
+		}else
+		{
 		productDao.addProduct(product);
+		}
 		// String path =
 		// "C:/Users/Shubham/workspace/EcommerceP/projectfrontend/src/main/webapp/resources/";
 		String path = request.getServletContext().getRealPath("/resources/");
@@ -104,9 +112,7 @@ public class IndexController {
 				m.addAttribute("File Exeception" + e);
 			}
 
-		} else {
-			m.addAttribute("error", "problem in uploading");
-		}
+		} 
 
 		/*
 		 * List<Product> productList= productDao.getAllProduct();
@@ -158,5 +164,28 @@ public class IndexController {
 		m.addAttribute("products", productDao.getAllProductByCat(id));
 		return new ModelAndView("categoryItems");
 	}
+	
+	@RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
+	public String updateCategory(@ModelAttribute("category") Category category, ModelMap m, HttpServletRequest request) {
+
+		categoryDao.addCategory(category);
+		return "redirect:/categoryDisplay";
+	}
+	
+	
+	@RequestMapping("/editProduct/{productId}")
+     public String editProduct(@PathVariable("productId") Integer proId,Model m)
+     {
+		Product product=productDao.getProduct(proId);
+		m.addAttribute("product",product);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		return "productDisplay";
+		
+     }
+
+
 
 }

@@ -6,17 +6,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Category Items</title>
+<style type="text/css">
+.img-thumbnail {
+	height: 400px;
+	width: 300px;
+}
+</style>
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<c:set var="image" value="${contextPath}/resources" />
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<div class="row">
-	<div class="col-sm-6">
-	<c:forEach items="${products}" var="product">
-		<img src="${image}/${product.productName}.jpg" class="img-thumbnail" />
-	</c:forEach>
-	</div></div></div>
+
+			<c:forEach items="${products}" var="product">
+				<div class="col-sm-4">
+					<img src="${image}/${product.productName}.jpg"
+						class="img-thumbnail"/>
+				</div>
+
+			</c:forEach>
+
+		</div>
+	</div>
 </body>
 </html>
