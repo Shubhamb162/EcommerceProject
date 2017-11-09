@@ -9,41 +9,37 @@ import org.springframework.transaction.annotation.Transactional;
 import niit.projectbackend.projectbackend.Product;
 import niit.projectbackend.projectbackend.dao.ProductDao;
 
-@Repository("productDao")//for doing all database related operation we have to use @Repository annotation
+@Repository("productDao") // for doing all database related operation we have to
+							// use @Repository annotation
 @Transactional
-public class ProductDaoImpl implements ProductDao 
-{
+public class ProductDaoImpl implements ProductDao {
 	@Autowired
-    private SessionFactory sessionFactory;
-	
+	private SessionFactory sessionFactory;
+
 	@Override
 	public boolean addProduct(Product product) {
 
-		try{
+		try {
 			sessionFactory.getCurrentSession().save(product);
-			return true;			
-		}
-		catch(Exception ex)
-		{		
+			return true;
+		} catch (Exception ex) {
 			return false;
-		}	
+		}
 	}
 
 	@Override
 	public boolean deleteProduct(Product product) {
-		try{
-			  sessionFactory.getCurrentSession().delete(product);
-				 return true;
-			}
-			catch(Exception ex)
-			{
-				return false;
-			}
+		try {
+			sessionFactory.getCurrentSession().delete(product);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 
 	@Override
 	public Product getProduct(Integer id) {
-		return (Product)sessionFactory.getCurrentSession().get(Product.class, id);
+		return (Product) sessionFactory.getCurrentSession().get(Product.class, id);
 	}
 
 	@Override
@@ -59,7 +55,18 @@ public class ProductDaoImpl implements ProductDao
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> getAllProduct() {
-		 return sessionFactory.getCurrentSession().createQuery("from Product").getResultList();
+		return sessionFactory.getCurrentSession().createQuery("from Product").getResultList();
+	}
+
+	@Override
+	public List<Product> getAllProductByCat(Integer id) {
+		try{
+		 return sessionFactory.getCurrentSession().createQuery("from Product where category_categoryid=:id", Product.class).setParameter("id", id).getResultList();
+		}
+		catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 }

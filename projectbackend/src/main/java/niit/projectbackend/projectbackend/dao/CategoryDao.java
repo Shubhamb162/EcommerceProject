@@ -10,5 +10,6 @@ public interface CategoryDao {
 	public Category getCategory(Integer id);
 	public boolean updateCategory(Category category);
 	public List<Category> getAllCategory();
+	//public List<Product> getAllProductOfCategory(S);
 
 }

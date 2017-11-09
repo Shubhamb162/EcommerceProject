@@ -15,7 +15,7 @@
 			<div class="carousel-inner">
 
 				<div class="item active">
-					<img src="${image}/b0.jpg" alt="bookstore1"
+					<img src="${image}/books.jpg" alt="bookstore1"
 						style="width: 100%; height: 500px; margin: 0 auto;">
 					<div class="carousel-caption">
 						<h3>Book Store</h3>

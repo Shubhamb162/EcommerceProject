@@ -119,6 +119,10 @@ public class IndexController {
 	@RequestMapping("/productInformation/{productId}")
 	public ModelAndView productInfo(@PathVariable(value = "productId") Integer id, Model m) {
 		m.addAttribute("product", productDao.getProduct(id));
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
 		return new ModelAndView("productInformation");
 	}
 
@@ -147,6 +151,12 @@ public class IndexController {
 
 		categoryDao.addCategory(category);
 		return "redirect:/categoryDisplay";
+	}
+
+	@RequestMapping("/categoryItems/{categoryId}")
+	public ModelAndView categoryItems(@PathVariable(value = "categoryId") Integer id, Model m) {
+		m.addAttribute("products", productDao.getAllProductByCat(id));
+		return new ModelAndView("categoryItems");
 	}
 
 }
