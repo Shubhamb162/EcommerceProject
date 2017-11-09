@@ -28,7 +28,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}">Home</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
+					data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<c:forEach items="${categoryLists}" var="categoryList">
 							<li><a
@@ -36,6 +36,9 @@
 						</c:forEach>
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/productDisplay">Product</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/categoryDisplay">Category</a></li>
+
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${pageContext.request.contextPath}/signUp"><span

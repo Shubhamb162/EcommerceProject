@@ -121,6 +121,7 @@ public class IndexController {
 		m.addAttribute("product", productDao.getProduct(id));
 		return new ModelAndView("productInformation");
 	}
+
 	@RequestMapping("/login")
 	public ModelAndView login(Model m) {
 		List<Product> productList = productDao.getAllProduct();
@@ -130,5 +131,22 @@ public class IndexController {
 		return new ModelAndView("login");
 	}
 
+	@RequestMapping("/categoryDisplay")
+	public ModelAndView categoryDisplay(Model m) {
+		Category category = new Category();
+		m.addAttribute(category);
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
+		return new ModelAndView("categoryDisplay");
+	}
+
+	@RequestMapping(value = "/categoryProcess", method = RequestMethod.POST)
+	public String saveCategory(@ModelAttribute("category") Category category, ModelMap m, HttpServletRequest request) {
+
+		categoryDao.addCategory(category);
+		return "redirect:/categoryDisplay";
+	}
 
 }
