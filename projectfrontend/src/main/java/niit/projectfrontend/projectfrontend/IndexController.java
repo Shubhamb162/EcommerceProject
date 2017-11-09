@@ -51,18 +51,18 @@ public class IndexController {
 	 * ModelAndView("index"); }
 	 */
 
-	@RequestMapping("/registration")
-	public ModelAndView registration(Model m) {
+	@RequestMapping("/signUp")
+	public ModelAndView signUp(Model m) {
 		Customer customer = new Customer();
 		m.addAttribute(customer);
 		List<Product> productList = productDao.getAllProduct();
 		m.addAttribute("productLists", productList);
 		List<Category> categoryList = categoryDao.getAllCategory();
 		m.addAttribute("categoryLists", categoryList);
-		return new ModelAndView("registration");
+		return new ModelAndView("signUp");
 	}
 
-	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
+	@RequestMapping(value = "/signUpProcess", method = RequestMethod.POST)
 	public ModelAndView saveCustomer(@ModelAttribute("customer") Customer customer) {
 		customerDao.addCustomer(customer);
 		return new ModelAndView("index");

@@ -20,16 +20,13 @@
 </head>
 <body>
 
-
-
-
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom1">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="${pageContext.request.contextPath}">BookLand</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}">Home</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -41,16 +38,10 @@
 				<li><a href="${pageContext.request.contextPath}/productDisplay">Product</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${pageContext.request.contextPath}/registration"><span
+				<li><a href="${pageContext.request.contextPath}/signUp"><span
 						class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a href="${pageContext.request.contextPath}/login"><span
 						class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
 	</nav>
-
-
-
-
-	
-

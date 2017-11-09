@@ -4,10 +4,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
+<head><title>SignUp</title></head>>
 <body>
 	<c:import url="header.jsp"></c:import>
 	<form:form method="post" modelAttribute="customer"
-		action="registerProcess">
+		action="signUpProcess">
 		<br>
 		<br>
 		<br>
