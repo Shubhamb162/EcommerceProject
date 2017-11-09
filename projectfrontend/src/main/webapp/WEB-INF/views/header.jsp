@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,32 +20,37 @@
 </head>
 <body>
 
+
+
+
 	<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom1">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">BookLand</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}">BookLand</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index">Home</a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Page 1-1</a></li>
-						<li><a href="#">Page 1-2</a></li>
-						<li><a href="#">Page 1-3</a></li>
+						<c:forEach items="${categoryLists}" var="categoryList">
+							<li><a
+								href="${pageContext.request.contextPath}/categoryItems/${categoryList.categoryId}">${categoryList.categoryName}</a></li>
+						</c:forEach>
 					</ul></li>
-				<li><a href="productDisplay">Product</a></li>
+				<li><a href="${pageContext.request.contextPath}/productDisplay">Product</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="registration"><span
+				<li><a href="${pageContext.request.contextPath}/registration"><span
 						class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="login"><span
+				<li><a href="${pageContext.request.contextPath}/login"><span
 						class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
 	</nav>
 
-	<div class="container"></div>
 
-</body>
-</html>
+
+
+	
+

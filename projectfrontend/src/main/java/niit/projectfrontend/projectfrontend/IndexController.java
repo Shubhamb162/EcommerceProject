@@ -38,19 +38,27 @@ public class IndexController {
 	CategoryDao categoryDao;
 
 	@RequestMapping("/")
-	public ModelAndView index() {
+	public ModelAndView index(Model m) {
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
 		return new ModelAndView("index");
 	}
 
-	@RequestMapping("/index")
-	public ModelAndView home() {
-		return new ModelAndView("index");
-	}
+	/*
+	 * @RequestMapping("/index") public ModelAndView home() { return new
+	 * ModelAndView("index"); }
+	 */
 
 	@RequestMapping("/registration")
 	public ModelAndView registration(Model m) {
 		Customer customer = new Customer();
 		m.addAttribute(customer);
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
 		return new ModelAndView("registration");
 	}
 
@@ -109,9 +117,18 @@ public class IndexController {
 	}
 
 	@RequestMapping("/productInformation/{productId}")
-	public ModelAndView productInfo(@PathVariable(value = "productId") Integer id,Model m) {
-		m.addAttribute("product",productDao.getProduct(id));
+	public ModelAndView productInfo(@PathVariable(value = "productId") Integer id, Model m) {
+		m.addAttribute("product", productDao.getProduct(id));
 		return new ModelAndView("productInformation");
 	}
+	@RequestMapping("/login")
+	public ModelAndView login(Model m) {
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
+		return new ModelAndView("login");
+	}
+
 
 }

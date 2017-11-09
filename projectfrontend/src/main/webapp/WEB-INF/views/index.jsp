@@ -1,32 +1,8 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>BookStore</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<%@include file="header.jsp" %>
 <c:set var="image" value="${pageContext.request.contextPath}/resources/" />
-<!-- <style type="text/css">
-		.carousel-inner{
-		width:50%;
-		height:500px;
-		margin:0 auto;
-		 position: absolute;
-} 
-</style>-->
-
-</head>
-<body>
-	<c:import url="header.jsp"></c:import>
+	<br><br><br><br>
 	<div class="container">
-		<h2>Carousel Example</h2>
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">

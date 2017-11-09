@@ -11,11 +11,26 @@
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
-	<br><br><br><br>
-	
-	
-	<c:set var="images" value="${pageContext.request.contextPath}/resources"/>
-	
-	<img src="${images}/${product.productName}.jpg"/>
+	<br>
+	<br>
+	<br>
+	<br>
+	<c:set var="images"
+		value="${pageContext.request.contextPath}/resources" />
+	<div class="container">
+		<div class="row">
+
+			<div class="col-sm-6">
+				<h1 style="text-align: center;">${product.productName}</h1>
+				<img src="${images}/${product.productName}.jpg"
+					style="height: 300px;" />
+			</div>
+			<div class="col-sm-6">
+				<br><br>
+				<h2>Product Desc:</h2>
+				<p>${product.productDesc}</p>
+				<h2>Product Price:</h2>
+				<p>${product.productPrice}</p>
+			</div>
 </body>
 </html>

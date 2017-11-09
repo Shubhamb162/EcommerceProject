@@ -18,7 +18,14 @@ public class Customer {
 		private String confirmPassword;
 		private String emailId;
 		private String mobileNo;
+		private String role="ROLE_CUSTOMER";
 		
+		public String getRole() {
+			return role;
+		}
+		public void setRole(String role) {
+			this.role = role;
+		}
 		public Integer getCustomerId() {
 			return customerId;
 		}
