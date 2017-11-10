@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Products</title>
+<title>Product Display</title>
 <style type="text/css">
 /* table,th {
 	text-align: center;
@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
-					<h1 style="text-align: center">Products</h1>
+					<h1 style="text-align: center">Add Product</h1>
 					<form:input type="hidden" path="productId" />
 					<div class="form-group">
 						<label for="productName">Product Name</label>
@@ -49,6 +49,12 @@
 					<div class="form-group">
 						<label for="productImage">Product Image</label>
 						<form:input type="file" path="productImage" />
+					</div>
+					<div class="form-group">
+						<label for="productStock">Product Stock</label>
+						<form:input path="productStock" type="number" class="form-control"
+							name="productStock" id="productStock"
+							placeholder="Enter product Stock" />
 					</div>
 					<div class="form-group">
 						<label for="sel1">Select Category:</label>
@@ -77,8 +83,8 @@
 					<th style="text-align: center;">Product Name</th>
 					<th style="text-align: center;">Product Description</th>
 					<th style="text-align: center;">Product Price</th>
-					<th style="text-align: center;">Edit Product</th>
-					<th style="text-align: center;">Delete Product</th>
+					<th style="text-align: center;">Product Stock</th>
+					<th style="text-align: center;">Edit / Delete</th>
 				</tr>
 			</thead>
 			<c:forEach var="products" items="${productLists}">
@@ -87,10 +93,10 @@
 					<td><a href="productInformation/${products.productId}">${products.productName}</a></td>
 					<td>${products.productDesc}</td>
 					<td>${products.productPrice}</td>
+					<td>${products.productStock}</td>
 					<td><a
 						href="${pageContext.request.contextPath}/editProduct/${products.productId}"><button
-								type="button" class="btn btn-primary">Edit</button></a></td>
-					<td><a
+								type="button" class="btn btn-primary">Edit</button></a><a
 						href="${pageContext.request.contextPath}/deleteProduct/${products.productId}">
 							<button type="button" class="btn btn-danger">Delete</button>
 					</a></td>

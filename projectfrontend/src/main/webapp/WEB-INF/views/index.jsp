@@ -18,7 +18,7 @@
 					<img src="${image}/books.jpg" alt="bookstore1"
 						style="width: 100%; height: 500px; margin: 0 auto;">
 					<div class="carousel-caption">
-						<h3>Book Store</h3>
+						<h3 >Book Store</h3>
 						<p>A world of books for young and old.</p>
 					</div>
 				</div>

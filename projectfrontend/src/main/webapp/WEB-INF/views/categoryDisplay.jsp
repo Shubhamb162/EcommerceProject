@@ -21,7 +21,7 @@
 			<div class="row">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
-					<h1 style="text-align: center">Category</h1>
+					<h1 style="text-align: center">Add Category</h1>
 					<form:input type="hidden" path="categoryId" />
 					<div class="form-group">
 						<label for="categoryName">Category Name</label>
