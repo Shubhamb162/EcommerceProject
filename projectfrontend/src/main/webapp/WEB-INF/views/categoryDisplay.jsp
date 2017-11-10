@@ -12,7 +12,7 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 
-	<form:form action="categoryProcess" modelAttribute="category"
+	<form:form action="${pageContext.request.contextPath}/categoryProcess" modelAttribute="category"
 		method="post">
 		<br>
 		<br>
@@ -22,6 +22,7 @@
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
 					<h1 style="text-align: center">Category</h1>
+					<form:input type="hidden" path="categoryId" />
 					<div class="form-group">
 						<label for="categoryName">Category Name</label>
 						<form:input type="text" path="categoryName" class="form-control"
@@ -50,12 +51,20 @@
 					<!--<th style="text-align: center;"><span class="glyphicons glyphicons-picture"></span></th>-->
 					<th style="text-align: center;">Category Name</th>
 					<th style="text-align: center;">Category Description</th>
-				</tr>
+					<th style="text-align: center;">Edit/Delete</th>
+					</tr>
 			</thead>
 			<c:forEach var="category" items="${categoryLists}">
 				<tr>
 					<td>${category.categoryName}</td>
 					<td>${category.categoryDesc}</td>
+					<td><a
+						href="${pageContext.request.contextPath}/editCategory/${category.categoryId}"><button
+								type="button" class="btn btn-primary">Edit</button></a><a
+						href="${pageContext.request.contextPath}/deleteCategory/${category.categoryId}">
+							<button type="button" class="btn btn-danger">Delete</button>
+					</a></td>
+				</tr>
 			</c:forEach>
 		</table>
 	</div>

@@ -17,8 +17,8 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 
-	<form:form action="${pageContext.request.contextPath}/productProcess" modelAttribute="product"
-		method="post" enctype="multipart/form-data">
+	<form:form action="${pageContext.request.contextPath}/productProcess"
+		modelAttribute="product" method="post" enctype="multipart/form-data">
 		<br>
 		<br>
 		<br>
@@ -27,7 +27,7 @@
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
 					<h1 style="text-align: center">Products</h1>
-					<form:input type="hidden"  path="productId"/>
+					<form:input type="hidden" path="productId" />
 					<div class="form-group">
 						<label for="productName">Product Name</label>
 						<form:input type="text" path="productName" class="form-control"
@@ -87,9 +87,11 @@
 					<td><a href="productInformation/${products.productId}">${products.productName}</a></td>
 					<td>${products.productDesc}</td>
 					<td>${products.productPrice}</td>
-					<td><a href="editProduct/${products.productId}"><button
+					<td><a
+						href="${pageContext.request.contextPath}/editProduct/${products.productId}"><button
 								type="button" class="btn btn-primary">Edit</button></a></td>
-					<td><a href="productDisplay/${products.productId}">
+					<td><a
+						href="${pageContext.request.contextPath}/deleteProduct/${products.productId}">
 							<button type="button" class="btn btn-danger">Delete</button>
 					</a></td>
 			</c:forEach>

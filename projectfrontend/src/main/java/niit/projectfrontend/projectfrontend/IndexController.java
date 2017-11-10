@@ -86,14 +86,12 @@ public class IndexController {
 		 * System.out.println(product.getProductName());
 		 * System.out.println("product cat"+product.getCategory());
 		 */
-		
-		System.err.println("productId "+product.getProductId());
-		if(product.getProductId()!=null)
-		{
+
+		System.err.println("productId " + product.getProductId());
+		if (product.getProductId() != null) {
 			productDao.updateProduct(product);
-		}else
-		{
-		productDao.addProduct(product);
+		} else {
+			productDao.addProduct(product);
 		}
 		// String path =
 		// "C:/Users/Shubham/workspace/EcommerceP/projectfrontend/src/main/webapp/resources/";
@@ -112,7 +110,7 @@ public class IndexController {
 				m.addAttribute("File Exeception" + e);
 			}
 
-		} 
+		}
 
 		/*
 		 * List<Product> productList= productDao.getAllProduct();
@@ -154,38 +152,80 @@ public class IndexController {
 
 	@RequestMapping(value = "/categoryProcess", method = RequestMethod.POST)
 	public String saveCategory(@ModelAttribute("category") Category category, ModelMap m, HttpServletRequest request) {
-
-		categoryDao.addCategory(category);
+		if (category.getCategoryId() != null) {
+			categoryDao.updateCategory(category);
+		} else {
+			categoryDao.addCategory(category);
+		}
 		return "redirect:/categoryDisplay";
 	}
 
 	@RequestMapping("/categoryItems/{categoryId}")
 	public ModelAndView categoryItems(@PathVariable(value = "categoryId") Integer id, Model m) {
 		m.addAttribute("products", productDao.getAllProductByCat(id));
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
 		return new ModelAndView("categoryItems");
 	}
-	
+
 	@RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
-	public String updateCategory(@ModelAttribute("category") Category category, ModelMap m, HttpServletRequest request) {
+	public String updateCategory(@ModelAttribute("category") Category category, ModelMap m,
+			HttpServletRequest request) {
 
 		categoryDao.addCategory(category);
 		return "redirect:/categoryDisplay";
 	}
-	
-	
+
 	@RequestMapping("/editProduct/{productId}")
-     public String editProduct(@PathVariable("productId") Integer proId,Model m)
-     {
-		Product product=productDao.getProduct(proId);
-		m.addAttribute("product",product);
+	public String editProduct(@PathVariable("productId") Integer proId, Model m) {
+		Product product = productDao.getProduct(proId);
+		m.addAttribute("product", product);
 		List<Category> categoryList = categoryDao.getAllCategory();
 		m.addAttribute("categoryLists", categoryList);
 		List<Product> productList = productDao.getAllProduct();
 		m.addAttribute("productLists", productList);
 		return "productDisplay";
-		
-     }
 
+	}
 
+	@RequestMapping("/deleteProduct/{productId}")
+	public String deleteProduct(@PathVariable("productId") Integer proId, Model m) {
+		Product product = productDao.getProduct(proId);
+		productDao.deleteProduct(product);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		Product product2 = new Product();
+		m.addAttribute("product", product2);
+		return "productDisplay";
+	}
+
+	@RequestMapping("/editCategory/{categoryId}")
+	public String editCategory(@PathVariable("categoryId") Integer catId, Model m) {
+		Category category = categoryDao.getCategory(catId);
+		m.addAttribute("category", category);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		return "categoryDisplay";
+
+	}
+
+	@RequestMapping("/deleteCategory/{categoryId}")
+	public String deleteCategory(@PathVariable("categoryId") Integer catId, Model m) {
+		Category category = categoryDao.getCategory(catId);
+		categoryDao.deleteCategory(category);
+		List<Category> categoryList = categoryDao.getAllCategory();
+		m.addAttribute("categoryLists", categoryList);
+		List<Product> productList = productDao.getAllProduct();
+		m.addAttribute("productLists", productList);
+		Category category2 = new Category();
+		m.addAttribute("category", category2);
+		return "categoryDisplay";
+	}
 
 }
