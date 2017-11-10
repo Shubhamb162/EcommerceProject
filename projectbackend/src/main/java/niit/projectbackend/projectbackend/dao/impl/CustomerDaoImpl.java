@@ -21,7 +21,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public boolean addCustomer(Customer customer) {
 		
 		try{
-			sessionFactory.getCurrentSession().save(customer);
+			sessionFactory.getCurrentSession().persist(customer);
 			return true;			
 		}
 		catch(Exception ex)

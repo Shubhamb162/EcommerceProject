@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import niit.projectbackend.projectbackend.dao.CategoryDao;
 import niit.projectbackend.projectbackend.dao.ProductDao;
 
-public class productTesting {
+public class ProductTesting {
 	//we have to declare reference variables here to access it in any method
 		AnnotationConfigApplicationContext context;
 		ProductDao productDao;
