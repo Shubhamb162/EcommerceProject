@@ -17,7 +17,7 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 
-	<form:form action="${pageContext.request.contextPath}/productProcess"
+	<form:form action="${pageContext.request.contextPath}/admin/productProcess"
 		modelAttribute="product" method="post" enctype="multipart/form-data">
 		<br>
 		<br>
@@ -90,14 +90,14 @@
 			<c:forEach var="products" items="${productLists}">
 				<tr>
 					<%-- <td>${products.productId}</td> --%>
-					<td><a href="productInformation/${products.productId}">${products.productName}</a></td>
+					<td><a href="${pageContext.request.contextPath}/productInformation/${products.productId}">${products.productName}</a></td>
 					<td>${products.productDesc}</td>
 					<td>${products.productPrice}</td>
 					<td>${products.productStock}</td>
 					<td><a
-						href="${pageContext.request.contextPath}/editProduct/${products.productId}"><button
+						href="${pageContext.request.contextPath}/admin/editProduct/${products.productId}"><button
 								type="button" class="btn btn-primary">Edit</button></a><a
-						href="${pageContext.request.contextPath}/deleteProduct/${products.productId}">
+						href="${pageContext.request.contextPath}/admin/deleteProduct/${products.productId}">
 							<button type="button" class="btn btn-danger">Delete</button>
 					</a></td>
 			</c:forEach>

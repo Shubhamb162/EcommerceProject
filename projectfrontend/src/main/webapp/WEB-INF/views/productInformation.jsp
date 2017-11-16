@@ -31,6 +31,11 @@
 				<p>${product.productDesc}</p>
 				<h2>Product Price:</h2>
 				<p>${product.productPrice}</p>
+				<div class="col-sm-5">
+					<a
+						href="${pageContext.request.contextPath}/customer/addToCart/${product.productId}"><button
+							class="btn btn-warning">Add Cart</button></a>
+				</div>
 			</div>
 		</div>
 	</div>

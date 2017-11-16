@@ -20,6 +20,18 @@ public class CartItems {
 	@OneToOne
 	private Product product;
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public void setCartItemsId(Integer cartItemsId) {
+		this.cartItemsId = cartItemsId;
+	}
+
 	public Integer getCartItemsId() {
 		return cartItemsId;
 	}

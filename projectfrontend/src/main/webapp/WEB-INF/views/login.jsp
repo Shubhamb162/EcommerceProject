@@ -9,7 +9,7 @@
 </head>
 <body>
 	<c:import url="header.jsp"></c:import>
-	<form method="post" action="loginProcess">
+	<form method="post" action="">	<!-- For Spring security we have to remove actions it will handle by itself-->
 		<br> <br> <br>
 		<div class="container-fluid">
 			<div class="row">
@@ -18,8 +18,9 @@
 					<h1 style="text-align: center">Login</h1>
 					<div class="form-group">
 						<label for="email">Email</label> <input type="email"
-							class="form-control" name="emailId" id="email"
-							placeholder="Enter EmailId">
+							class="form-control" name="username" id="email"
+							placeholder="Enter EmailId"><!-- for spring security name should be username -->
+					
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label> <input type="password"

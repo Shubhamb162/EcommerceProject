@@ -12,7 +12,7 @@
 <body>
 	<c:import url="header.jsp"></c:import>
 
-	<form:form action="${pageContext.request.contextPath}/categoryProcess" modelAttribute="category"
+	<form:form action="${pageContext.request.contextPath}/admin/categoryProcess" modelAttribute="category"
 		method="post">
 		<br>
 		<br>
@@ -59,9 +59,9 @@
 					<td>${category.categoryName}</td>
 					<td>${category.categoryDesc}</td>
 					<td><a
-						href="${pageContext.request.contextPath}/editCategory/${category.categoryId}"><button
+						href="${pageContext.request.contextPath}/admin/editCategory/${category.categoryId}"><button
 								type="button" class="btn btn-primary">Edit</button></a><a
-						href="${pageContext.request.contextPath}/deleteCategory/${category.categoryId}">
+						href="${pageContext.request.contextPath}/admin/deleteCategory/${category.categoryId}">
 							<button type="button" class="btn btn-danger">Delete</button>
 					</a></td>
 				</tr>

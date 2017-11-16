@@ -21,6 +21,14 @@ public class Cart {
 	@OneToMany(mappedBy = "cart")
 	private List<CartItems> cartItems;
 
+	public List<CartItems> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(List<CartItems> cartItems) {
+		this.cartItems = cartItems;
+	}
+
 	public Integer getCartId() {
 		return cartId;
 	}

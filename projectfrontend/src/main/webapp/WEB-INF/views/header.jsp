@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +28,7 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}">Home</a></li>
+				<security:authorize access="!hasAuthority('ROLE_ADMIN')">
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -35,16 +37,29 @@
 								href="${pageContext.request.contextPath}/categoryItems/${categoryList.categoryId}">${categoryList.categoryName}</a></li>
 						</c:forEach>
 					</ul></li>
-				<li><a href="${pageContext.request.contextPath}/productDisplay">Product</a></li>
+					</security:authorize>
+					<security:authorize access="hasAuthority('ROLE_ADMIN')">
+				<li><a href="${pageContext.request.contextPath}/admin/productDisplay">Product</a></li>
+			
 				<li><a
-					href="${pageContext.request.contextPath}/categoryDisplay">Category</a></li>
-
+					href="${pageContext.request.contextPath}/admin/categoryDisplay">Category</a></li>
+	</security:authorize>
+	
 			</ul>
+			<security:authorize access="isAnonymous()">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${pageContext.request.contextPath}/signUp"><span
 						class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a href="${pageContext.request.contextPath}/login"><span
 						class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
+			</security:authorize>
+			<security:authorize access="isAuthenticated()">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${pageContext.request.contextPath}/logout"><span
+						class="glyphicon glyphicon-user"></span>Logout</a></li>
+				
+			</ul>
+			</security:authorize>
 		</div>
 	</nav>

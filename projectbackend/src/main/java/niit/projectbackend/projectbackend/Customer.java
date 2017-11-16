@@ -19,6 +19,15 @@ public class Customer {
 	private String confirmPassword;
 	private String emailId;
 	private String mobileNo;
+	private boolean is_Active;
+	public boolean isIs_Active() {
+		return is_Active;
+	}
+
+	public void setIs_Active(boolean is_Active) {
+		this.is_Active = is_Active;
+	}
+
 	private String role = "ROLE_CUSTOMER";
 	@OneToOne
 	private Cart cart;

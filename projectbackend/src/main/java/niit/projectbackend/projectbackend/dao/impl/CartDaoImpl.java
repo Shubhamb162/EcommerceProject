@@ -46,7 +46,7 @@ public class CartDaoImpl implements CartDao {
 
 	@Override
 	public Cart getCart(Integer id) {
-		return (Cart) sessionFactory.getCurrentSession().get(Cart.class, id);
+		return sessionFactory.getCurrentSession().get(Cart.class, id);
 
 	}
 

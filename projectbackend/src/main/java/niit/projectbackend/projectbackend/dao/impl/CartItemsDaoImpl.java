@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import niit.projectbackend.projectbackend.CartItems;
+import niit.projectbackend.projectbackend.Customer;
 import niit.projectbackend.projectbackend.dao.CartItemsDao;
 
 @Repository("cartItemsDao")
@@ -48,6 +49,20 @@ public class CartItemsDaoImpl implements CartItemsDao {
 	@Override
 	public CartItems getCartItems(Integer id) {
 		return (CartItems) sessionFactory.getCurrentSession().get(CartItems.class, id);
+
+	}
+
+	@Override
+	public CartItems getCartItems(Integer cartId, Integer productId) {
+		try{
+		return (CartItems) sessionFactory.getCurrentSession()
+				.createQuery("from CartItems where cart_cartid=:cartId and product_productid=:productId")
+				.setParameter("cartId", cartId).setParameter("productId", productId).getSingleResult();
+		}
+		catch (Exception e) {
+			return null;
+		}
+		
 
 	}
 
