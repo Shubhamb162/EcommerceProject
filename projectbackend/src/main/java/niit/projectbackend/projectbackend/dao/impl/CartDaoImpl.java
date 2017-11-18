@@ -32,7 +32,8 @@ public class CartDaoImpl implements CartDao {
 			return true;
 		} catch (Exception ex) {
 			return false;
-		}}
+		}
+	}
 
 	@Override
 	public boolean updateCart(Cart cart) {

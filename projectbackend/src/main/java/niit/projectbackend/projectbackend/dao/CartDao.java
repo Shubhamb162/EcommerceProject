@@ -6,6 +6,7 @@ import niit.projectbackend.projectbackend.Cart;
 
 @Component
 public interface CartDao {
+	
 	public boolean addCart(Cart cart);
 
 	public boolean deleteCart(Cart cart);

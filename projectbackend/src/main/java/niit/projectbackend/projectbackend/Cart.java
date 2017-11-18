@@ -19,7 +19,7 @@ public class Cart {
 	private Double cartTotalPrice;
 	@OneToOne(mappedBy = "cart")
 	private Customer customer;
-	@OneToMany(mappedBy = "cart",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
 	private List<CartItems> cartItems;
 
 	public List<CartItems> getCartItems() {

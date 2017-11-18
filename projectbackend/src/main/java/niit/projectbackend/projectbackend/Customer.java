@@ -1,9 +1,12 @@
 package niit.projectbackend.projectbackend;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -29,7 +32,7 @@ public class Customer {
 
 	@NotNull(message = "Password should not be null")
 	@NotBlank(message = "Password should not be Blank")
-	@Pattern(regexp="^.*(?=.{6,8})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*$",message="Follow Instructions 1.Password length must be 6-8 characters 2.Password must have 1 Uppercase letter,1 Lowercase letter,1 Number,1 Special Character")
+	@Pattern(regexp = "^.*(?=.{6,8})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*$", message = "Follow Instructions 1.Password length must be 6-8 characters 2.Password must have 1 Uppercase letter,1 Lowercase letter,1 Number,1 Special Character")
 	private String password;
 
 	@Transient
@@ -54,6 +57,9 @@ public class Customer {
 	private String role = "ROLE_CUSTOMER";
 	@OneToOne
 	private Cart cart;
+
+	@OneToMany(mappedBy = "customer")
+	private List<Orders> orders;
 
 	public String getRole() {
 		return role;
@@ -126,4 +132,14 @@ public class Customer {
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
+
+	public List<Orders> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
+
+	
 }

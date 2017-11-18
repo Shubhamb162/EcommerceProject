@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import niit.projectbackend.projectbackend.CartItems;
-import niit.projectbackend.projectbackend.Customer;
 import niit.projectbackend.projectbackend.dao.CartItemsDao;
 
 @Repository("cartItemsDao")
