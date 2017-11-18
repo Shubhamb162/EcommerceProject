@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Add icon library -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -27,39 +32,52 @@
 				<a class="navbar-brand" href="${pageContext.request.contextPath}">BookLand</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="${pageContext.request.contextPath}">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}"> <i
+						class="fa fa-home"> <!-- <span class="glyphicons glyphicons-home"></span> -->
+					</i>
+				</a></li>
 				<security:authorize access="!hasAuthority('ROLE_ADMIN')">
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<c:forEach items="${categoryLists}" var="categoryList">
-							<li><a
-								href="${pageContext.request.contextPath}/categoryItems/${categoryList.categoryId}">${categoryList.categoryName}</a></li>
-						</c:forEach>
-					</ul></li>
-					</security:authorize>
-					<security:authorize access="hasAuthority('ROLE_ADMIN')">
-				<li><a href="${pageContext.request.contextPath}/admin/productDisplay">Product</a></li>
-			
-				<li><a
-					href="${pageContext.request.contextPath}/admin/categoryDisplay">Category</a></li>
-	</security:authorize>
-	
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Categories<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<c:forEach items="${categoryLists}" var="categoryList">
+								<li><a
+									href="${pageContext.request.contextPath}/categoryItems/${categoryList.categoryId}">${categoryList.categoryName}</a></li>
+							</c:forEach>
+						</ul></li>
+
+				</security:authorize>
+				<security:authorize access="hasAuthority('ROLE_ADMIN')">
+					<li><a
+						href="${pageContext.request.contextPath}/admin/productDisplay">Product</a></li>
+
+					<li><a
+						href="${pageContext.request.contextPath}/admin/categoryDisplay">Category</a></li>
+				</security:authorize>
+
 			</ul>
+
 			<security:authorize access="isAnonymous()">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${pageContext.request.contextPath}/signUp"><span
-						class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="${pageContext.request.contextPath}/login"><span
-						class="glyphicon glyphicon-log-in"></span> Login</a></li>
-			</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="${pageContext.request.contextPath}/signUp"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="${pageContext.request.contextPath}/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
 			</security:authorize>
 			<security:authorize access="isAuthenticated()">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${pageContext.request.contextPath}/logout"><span
-						class="glyphicon glyphicon-user"></span>Logout</a></li>
-				
-			</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="${pageContext.request.contextPath}/logout"><span
+							class="glyphicon glyphicon-user"></span>Logout</a></li>
+
+				</ul>
 			</security:authorize>
+			<security:authorize access="!hasAuthority('ROLE_ADMIN')">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="${pageContext.request.contextPath}/customer/myCart"><span
+							class="glyphicon glyphicon-shopping-cart"></span>My Cart</a></li>
+				</ul>
+			</security:authorize>
+			
 		</div>
 	</nav>

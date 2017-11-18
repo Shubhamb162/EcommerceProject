@@ -25,12 +25,15 @@
 
 			<c:forEach items="${products}" var="product">
 				<div class="col-sm-4">
-					<a href="${contextPath}/displayProduct/${product.productId}"><img src="${image}/${product.productName}.jpg"
-						class="img-thumbnail"/>
-					<h4>${product.productName}</h4></a>
-					<h3>${product.productPrice}</h3>
+					<a href="${contextPath}/displayProduct/${product.productId}"><img
+						src="${image}/${product.productName}.jpg" class="img-thumbnail" /></a>
+
+					<h2>Product Name:</h2>
+					<P>${product.productName}</p>
+					<h2>Product Price:</h2>
+					<P>${product.productPrice}</p>
 				</div>
-				
+
 
 			</c:forEach>
 

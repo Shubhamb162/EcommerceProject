@@ -69,10 +69,10 @@
 						</a>
 						<div class="caption">
 							<p>${pro.productName}</p>
-							<p>${pro.productPrice}</p>
+							<%-- <p>${pro.productPrice}</p>
 							<a
 								href="${pageContext.request.contextPath}/customer/addToCart/${pro.productId}"><button
-									class="btn btn-primary">Add cart</button></a>
+									class="btn btn-primary">Add cart</button></a> --%>
 						</div>
 					</div>
 

@@ -3,6 +3,7 @@ package niit.projectbackend.projectbackend;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ public class Cart {
 	private Double cartTotalPrice;
 	@OneToOne(mappedBy = "cart")
 	private Customer customer;
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "cart",fetch=FetchType.EAGER)
 	private List<CartItems> cartItems;
 
 	public List<CartItems> getCartItems() {
