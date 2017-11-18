@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import niit.projectbackend.projectbackend.Cart;
 import niit.projectbackend.projectbackend.CartItems;
 import niit.projectbackend.projectbackend.Customer;
+import niit.projectbackend.projectbackend.Orders;
 import niit.projectbackend.projectbackend.Product;
 import niit.projectbackend.projectbackend.dao.CartDao;
 import niit.projectbackend.projectbackend.dao.CartItemsDao;
@@ -177,9 +178,31 @@ public class CustomerController {
 
 		cartDao.updateCart(cart);
 		cartItemsDao.deleteCartItems(cartItems);
-		//cartItemsDao.updateCartItems(cartItems);
-		
+		// cartItemsDao.updateCartItems(cartItems);
 
 		return "redirect:/customer/myCart";
+	}
+
+	@RequestMapping("/checkout/{cartId}")
+	public String checkout(@PathVariable("cartId") Integer cartId, Principal principal, Model m) {
+
+		Customer customer = customerDao.getCustomer(principal.getName()); // getting
+																			// customer
+		// System.out.println(customer.getFirstName());
+		m.addAttribute("customer", customer);
+		Cart cart = customer.getCart(); // getting carts
+		// System.out.println("my cart");
+		m.addAttribute("cart", cart);
+		List<CartItems> cartItems = cart.getCartItems();
+		m.addAttribute("cartItems", cartItems);
+		/*
+		 * Cart cart=cartDao.getCart(cartId);
+		 * 
+		 * Orders orders=new Orders();
+		 * 
+		 * cart.get
+		 */
+
+		return "checkout";
 	}
 }

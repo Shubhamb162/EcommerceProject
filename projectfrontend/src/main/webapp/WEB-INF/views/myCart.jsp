@@ -27,10 +27,11 @@
 						<td><input type="number" name="quantity"
 							value="${cartItem.cartItemsQuantity}" /></td>
 						<td>${cartItem.cartItemsPrice}</td>
-						<td><input type="submit" class="btn btn-primary" value="Edit">
+						<td><input type="submit" class="btn btn-info" value="Edit">
 							<a
 							href="${pageContext.request.contextPath}/customer/cartItemsDelete/${cartItem.cartItemsId}">
-							<button type="button" class="btn btn-danger">Delete</button></a></td>
+								<button type="button" class="btn btn-danger">Delete</button>
+						</a></td>
 					</form>
 
 
@@ -41,7 +42,10 @@
 				<td></td>
 				<td>Total Price</td>
 				<td>${cart.cartTotalPrice}</td>
-				<td></td>
+				<td><a
+					href="${pageContext.request.contextPath}/customer/checkout/${cart.cartId}">
+						<button type="button" class="btn btn-primary">Checkout</button>
+				</a></td>
 			</tr>
 
 		</tbody>
