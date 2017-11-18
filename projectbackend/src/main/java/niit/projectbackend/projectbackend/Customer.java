@@ -6,20 +6,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
+
+	@NotNull(message = "Name should not be null")
+	@NotBlank(message = "Name should not be Blank")
+	@Pattern(regexp = "[a-zA-Z]{4,}", message = "Name should contain only Alphabet")
 	private String firstName;
+
+	@NotNull(message = "Name should not be null")
+	@NotBlank(message = "Name should not be Blank")
+	@Pattern(regexp = "[a-zA-Z]{4,}", message = "Name should contain only Alphabet")
 	private String lastName;
+
+	@NotNull(message = "Password should not be null")
+	@NotBlank(message = "Password should not be Blank")
+	@Pattern(regexp="^.*(?=.{6,8})(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).*$",message="Follow Instructions 1.Password length must be 6-8 characters 2.Password must have 1 Uppercase letter,1 Lowercase letter,1 Number,1 Special Character")
 	private String password;
+
 	@Transient
 	private String confirmPassword;
+
+	@Email(message = "Enter valid email Id")
 	private String emailId;
+
+	@Pattern(regexp = "[0-9]{10,10}", message = "Name should contain only Alphabet")
 	private String mobileNo;
+
 	private boolean is_Active;
+
 	public boolean isIs_Active() {
 		return is_Active;
 	}
@@ -77,7 +100,7 @@ public class Customer {
 	}
 
 	public void setConfirmPassword(String confirmPassword) {
-		confirmPassword = confirmPassword;
+		this.confirmPassword = confirmPassword;
 	}
 
 	public String getEmailId() {

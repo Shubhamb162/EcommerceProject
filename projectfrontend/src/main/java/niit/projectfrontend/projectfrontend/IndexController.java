@@ -2,10 +2,13 @@ package niit.projectfrontend.projectfrontend;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,14 +65,23 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/signUpProcess", method = RequestMethod.POST)
-	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-		Cart cart = new Cart();
-		cart.setCustomer(customer);
-		customer.setCart(cart);
-		cartDao.addCart(cart);
-		customerDao.addCustomer(customer);
-
-		return "redirect:/login";
+	public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult result, Model m) {
+		if (result.hasErrors()) {
+			m.addAttribute(customer);
+			return "/signUp";
+		} else {
+			if (customer.getPassword().equals(customer.getConfirmPassword())) {
+				Cart cart = new Cart();
+				cart.setCustomer(customer);
+				customer.setCart(cart);
+				cartDao.addCart(cart);
+				customerDao.addCustomer(customer);
+				return "redirect:/login";
+			}
+			else{
+				return "/signUp";
+			}
+		}
 	}
 
 	@RequestMapping("/productInformation/{productId}")
@@ -101,16 +113,12 @@ public class IndexController {
 		return new ModelAndView("categoryItems");
 	}
 
-	
-
 	@RequestMapping("/displayProduct/{productId}")
 	public String displayProduct(@PathVariable("productId") Integer proid, ModelMap model) {
 		model.addAttribute("product", productDao.getProduct(proid));
 		return "productInformation";
 	}
 
-	
-	
 	@RequestMapping("/demo")
 	public String demo() {
 		return "demo";
