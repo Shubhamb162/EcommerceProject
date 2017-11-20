@@ -1,10 +1,12 @@
 package niit.projectbackend.projectbackend;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class OrderedItems {
@@ -12,11 +14,26 @@ public class OrderedItems {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderedItemsId;
+
 	private Double orderedItemsTotalPrice;
+
 	private Integer orderedItemsQuantity;
-	private Integer orderedItemsUnitPrice;
+	
+	private Double orderedItemsUnitPrice;
+
 	@ManyToOne
 	private Orders orders;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	private Product product;
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
 	public Integer getOrderedItemsId() {
 		return orderedItemsId;
@@ -42,11 +59,11 @@ public class OrderedItems {
 		this.orderedItemsQuantity = orderedItemsQuantity;
 	}
 
-	public Integer getOrderedItemsUnitPrice() {
+	public Double getOrderedItemsUnitPrice() {
 		return orderedItemsUnitPrice;
 	}
 
-	public void setOrderedItemsUnitPrice(Integer orderedItemsUnitPrice) {
+	public void setOrderedItemsUnitPrice(Double orderedItemsUnitPrice) {
 		this.orderedItemsUnitPrice = orderedItemsUnitPrice;
 	}
 

@@ -7,7 +7,6 @@
 	<br>
 	<br>
 	<div class="container">
-
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -25,20 +24,6 @@
 						<td>${cartItem.product.productPrice}</td>
 						<td>${cartItem.cartItemsQuantity}</td>
 						<td>${cartItem.cartItemsPrice}</td>
-						<%-- <form
-						action="${pageContext.request.contextPath}/customer/cartItemsEdit/${cartItem.cartItemsId}"
-						method="post">
-						<td><input type="number" name="quantity"
-							value="${cartItem.cartItemsQuantity}" /></td>
-
-						<td><input type="submit" class="btn btn-primary" value="Edit">
-							<a
-							href="${pageContext.request.contextPath}/customer/cartItemsDelete/${cartItem.cartItemsId}">
-								<button type="button" class="btn btn-danger">Delete</button>
-						</a></td>
-					</form> --%>
-
-
 					</tr>
 				</c:forEach>
 				<tr>
@@ -51,16 +36,16 @@
 						<button type="button" class="btn btn-warning">Checkout</button>
 				</a></td> --%>
 				</tr>
-
 			</tbody>
-
 		</table>
 		<center>
-			<button type="button" class="btn btn-danger"">Cancel</button>
-			<span> </span>
-			<button type="button" class="btn btn-success"">Confirm</button>
+			<a href="${pageContext.request.contextPath}/customer/myCart">
+				<button type="button" class="btn btn-danger"">Cancel</button>
+			</a> <span> </span> <a
+				href="${pageContext.request.contextPath}/customer/order">
+				<button type="button" class="btn btn-success"">Confirm</button>
+			</a>
 		</center>
-
 	</div>
 </body>
 </html>

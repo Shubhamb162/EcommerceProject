@@ -3,22 +3,23 @@ package niit.projectfrontend.projectfrontend;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import niit.projectbackend.projectbackend.Cart;
 import niit.projectbackend.projectbackend.CartItems;
 import niit.projectbackend.projectbackend.Customer;
+import niit.projectbackend.projectbackend.OrderedItems;
 import niit.projectbackend.projectbackend.Orders;
 import niit.projectbackend.projectbackend.Product;
 import niit.projectbackend.projectbackend.dao.CartDao;
 import niit.projectbackend.projectbackend.dao.CartItemsDao;
 import niit.projectbackend.projectbackend.dao.CustomerDao;
+import niit.projectbackend.projectbackend.dao.OrderedItemsDao;
+import niit.projectbackend.projectbackend.dao.OrdersDao;
 import niit.projectbackend.projectbackend.dao.ProductDao;
 
 @Controller
@@ -33,6 +34,10 @@ public class CustomerController {
 	CartItemsDao cartItemsDao;
 	@Autowired
 	CartDao cartDao;
+	@Autowired
+	OrdersDao ordersDao;
+	@Autowired
+	OrderedItemsDao orderedItemsDao;
 
 	@RequestMapping("/addToCart/{productId}")
 	public String addToCart(@PathVariable("productId") Integer proId, Principal principal, Model m) {
@@ -188,21 +193,63 @@ public class CustomerController {
 
 		Customer customer = customerDao.getCustomer(principal.getName()); // getting
 																			// customer
-		// System.out.println(customer.getFirstName());
 		m.addAttribute("customer", customer);
 		Cart cart = customer.getCart(); // getting carts
-		// System.out.println("my cart");
 		m.addAttribute("cart", cart);
 		List<CartItems> cartItems = cart.getCartItems();
 		m.addAttribute("cartItems", cartItems);
 		/*
-		 * Cart cart=cartDao.getCart(cartId);
-		 * 
-		 * Orders orders=new Orders();
-		 * 
+		 * Cart cart=cartDao.getCart(cartId); Orders orders=new Orders();
 		 * cart.get
 		 */
 
 		return "checkout";
+	}
+
+	@RequestMapping("/order")
+	public String order(Principal principal, Model m) {
+		Customer customer = customerDao.getCustomer(principal.getName()); // getting_customer
+
+		Cart cart = customer.getCart(); // getting_cart
+
+		Orders orders = new Orders(); // Creating_orders_object
+
+		orders.setCustomer(customer); // setting_customer_to_orders
+
+		List<CartItems> cartItems = cart.getCartItems(); // getting_list_of_cartItems
+
+		List<OrderedItems> orderedItemsList = new ArrayList(); // creating_orderedItemsList
+
+		cart.setCartQuantity(null);
+		cart.setCartTotalPrice(null);
+		cartDao.updateCart(cart); // updating_cart
+
+		for (CartItems items : cartItems) {
+			OrderedItems orderedItems = new OrderedItems(); // creating_orderedItems
+
+			orderedItems.setProduct(items.getProduct()); // setting_Product
+			orderedItems.setOrderedItemsQuantity(items.getCartItemsQuantity());// setting_OrderedItemsQuantity
+			orderedItems.setOrderedItemsTotalPrice(items.getCartItemsPrice());// setting_OrderedItemsTotalPrice
+			orderedItems.setOrderedItemsUnitPrice(items.getProduct().getProductPrice());// setting_OrderedItemsUnitPrice
+			orderedItems.setOrders(orders); // setting_orders
+			if (orders.getOrdersQuantity() == null) {
+				orders.setOrdersQuantity(0);
+			}
+			orders.setOrdersQuantity(orders.getOrdersQuantity() + orderedItems.getOrderedItemsQuantity());// setting_Quantity
+			if (orders.getOrdersTotalPrice() == null) {
+				orders.setOrdersTotalPrice(0.0);
+			}
+			orders.setOrdersTotalPrice(orders.getOrdersTotalPrice() + orderedItems.getOrderedItemsTotalPrice());// setting_TotalPrice
+			orderedItemsList.add(orderedItems);
+			cartItemsDao.deleteCartItems(items);
+		}
+		orders.setOrderedItems(orderedItemsList); // setting_orderedItemsList_to_Orders
+		ordersDao.placeOrders(orders); // setting_orders_to_orders_table
+		
+		for (OrderedItems orderedItems : orderedItemsList) {
+			orderedItemsDao.addOrderedItems(orderedItems);
+		}
+		m.addAttribute("orders",orders);
+		return "order";
 	}
 }
